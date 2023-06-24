@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./bootstrap.min.css" />
+    <link
+      rel="stylesheet"
+      href="./fontawesome-free-6.4.0-web/css/all.min.css"
+    />
+
+    <style>
+      .transaction-section {
+        width: 100%;
+        height: 250px;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        justify-content: center;
+        flex-direction: column;
+        background-color: white;
+        box-shadow: 2px 3px 1px 4px #000;
+        position: fixed;
+        bottom: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <nav>
+          <div class="flex justify-content-between">
+            <i class="fas fa-bars mx-3" id="show-bar"></i>
+            <div class="logo">
+              <img src="./img/logo.png" width="120" alt="logo" />
+            </div>
+            <div class="notify">
+              <i class="fas fa-envelope"> <small>20</small></i>
+              <i class="fas fa-bell"> <small>3</small></i>
+              <img
+                src="./127757412.jpg"
+                width="30"
+                class="rounded-circle"
+                alt=""
+              />
+            </div>
+          </div>
+        </nav>
+      </header>
+
+      <main>
+        <section>
+          <div class="top">
+            <div class="cardInfo">
+              <p class="text-center pt-2 text-white fs-3">Welcome! Benjamin</p>
+            </div>
+            <div class="card text-center">
+              <img src="./img/1.png" width="30" alt="" />
+              <h3 class="display-6">Total Balance</h3>
+              <div class="balance">
+                <h3 class="balance" id="balance">5666</h3>
+              </div>
+            </div>
+          </div>
+          <div class="transaction-section">
+            <h2>Transactions</h2>
+            <div class="transaction-form">
+              <label for="withdraw-amount">Withdraw Amount:</label>
+              <div class="d-flex">
+                <input
+                  type="number"
+                  class="form-control"
+                  id="withdraw-amount"
+                />
+                <button
+                  class="btn btn-primary"
+                  onclick="Transaction.withdraw()"
+                >
+                  Withdraw
+                </button>
+              </div>
+            </div>
+            <div class="transaction-form">
+              <label for="transfer-amount">Transfer Amount:</label>
+              <input type="number" class="form-control" id="transfer-amount" />
+              <label for="transfer-to">Transfer To:</label>
+              <div class="d-flex">
+                <input type="text" id="transfer-to" />
+                <button class="btn btn-primary" onclick="Transaction.transfer()">Transfer</button>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script>
+    /* class Transaction {
+      static withdraw() {
+        const withdrawAmount = parseFloat(document.getElementById("withdraw-amount").value);
+        if (!isNaN(withdrawAmount) && withdrawAmount > 0) {
+          Transaction.updateBalance(-withdrawAmount);
+          alert("Withdrawal successful!");
+        } else {
+          alert("Please enter a valid amount.");
+        }
+      }
+
+      static transfer() {
+        const transferAmount = parseFloat(document.getElementById("transfer-amount").value);
+        const transferTo = document.getElementById("transfer-to").value;
+        if (!isNaN(transferAmount) && transferAmount > 0 && transferTo.trim() !== "") {
+          Transaction.updateBalance(-transferAmount);
+          alert(`Successfully transferred $${transferAmount.toFixed(2)} to ${transferTo}!`);
+        } else {
+          alert("Please enter a valid amount and recipient.");
+        }
+      }
+
+      static updateBalance(amount) {
+        const balanceElement = document.getElementById("balance");
+        let currentBalance = parseFloat(balanceElement.innerText);
+        currentBalance += amount;
+        balanceElement.innerText = currentBalance.toFixed(2);
+      }
+    } */
+  
+    class Transaction {
+      static withdraw() {
+        const withdrawAmount = document.getElementById('withdraw-amount')
+        // const wAmountVal = parseInt()
+        const wAmountVal = parseFloat((withdrawAmount).value)
+        if(!isNaN(wAmountVal) && wAmountVal > 0) {
+
+        }
+      }
+    }
+  </script>
+  </body>
+</html>
