@@ -15,7 +15,7 @@
     <style>
       .transaction-section {
         width: 100%;
-        height: 250px;
+        height: 290px;
         display: flex;
         align-items: center;
         gap: 15px;
@@ -25,6 +25,7 @@
         box-shadow: 2px 3px 1px 4px #000;
         position: fixed;
         bottom: 0;
+        padding: 20px 0;
       }
     </style>
   </head>
@@ -59,7 +60,7 @@
             </div>
             <div class="card text-center">
               <img src="./img/1.png" width="30" alt="" />
-              <h3 class="display-6">Total Balance</h3>
+              <h3 class="display-6 text-dark">Total Balance</h3>
               <div class="balance">
                 <h3 class="balance" id="balance">5666</h3>
               </div>
@@ -88,7 +89,7 @@
               <input type="number" class="form-control" id="transfer-amount" />
               <label for="transfer-to">Transfer To:</label>
               <div class="d-flex">
-                <input type="text" id="transfer-to" />
+                <input type="text" class="form-control" id="transfer-to" />
                 <button class="btn btn-primary" onclick="Transaction.transfer()">Transfer</button>
               </div>
             </div>
@@ -98,7 +99,7 @@
     </div>
 
     <script>
-    /* class Transaction {
+    class Transaction {
       static withdraw() {
         const withdrawAmount = parseFloat(document.getElementById("withdraw-amount").value);
         if (!isNaN(withdrawAmount) && withdrawAmount > 0) {
@@ -112,7 +113,7 @@
       static transfer() {
         const transferAmount = parseFloat(document.getElementById("transfer-amount").value);
         const transferTo = document.getElementById("transfer-to").value;
-        if (!isNaN(transferAmount) && transferAmount > 0 && transferTo.trim() !== "") {
+        if (!isNaN(transferAmount) && transferAmount > 0) {
           Transaction.updateBalance(-transferAmount);
           alert(`Successfully transferred $${transferAmount.toFixed(2)} to ${transferTo}!`);
         } else {
@@ -126,18 +127,8 @@
         currentBalance += amount;
         balanceElement.innerText = currentBalance.toFixed(2);
       }
-    } */
+    } 
   
-    class Transaction {
-      static withdraw() {
-        const withdrawAmount = document.getElementById('withdraw-amount')
-        // const wAmountVal = parseInt()
-        const wAmountVal = parseFloat((withdrawAmount).value)
-        if(!isNaN(wAmountVal) && wAmountVal > 0) {
-
-        }
-      }
-    }
   </script>
   </body>
 </html>
