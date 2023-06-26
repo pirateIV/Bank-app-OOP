@@ -26,6 +26,13 @@
         position: fixed;
         bottom: 0;
         padding: 20px 0;
+        /* transform: ; */
+      }
+      input {
+        border: 0 !important;
+        border-radius: 0 !important;
+        border-bottom: 1px solid gray !important;
+        box-shadow: none !important;
       }
     </style>
   </head>
@@ -41,6 +48,9 @@
             <div class="notify">
               <i class="fas fa-envelope"> <small>20</small></i>
               <i class="fas fa-bell"> <small>3</small></i>
+              <!-- <div class="card position-absolute text-dark">
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Odit, natus.
+              </div> -->
               <img
                 src="./127757412.jpg"
                 width="30"
@@ -52,6 +62,23 @@
         </nav>
       </header>
 
+      <aside>
+        <div class="user">
+          <div class="d-flex align-items-center gap-3 p-3">
+            <img
+              src="./127757412.jpg"
+              width="80"
+              class="rounded-circle"
+              alt=""
+            />
+            <div>
+              <h6 class="display-6">Benjamin</h6>
+              <small>User</small>
+            </div>
+          </div>
+        </div>
+      </aside>
+
       <main>
         <section>
           <div class="top">
@@ -60,24 +87,27 @@
             </div>
             <div class="card text-center">
               <img src="./img/1.png" width="30" alt="" />
-              <h3 class="display-6 text-dark">Total Balance</h3>
-              <div class="balance">
+              <small class="fs-4 text-dark">Total Balance</small>
+              <div class="balance mt-5">
                 <h3 class="balance" id="balance">5666</h3>
               </div>
             </div>
+
+            <button class="">Make Transaction</button>
           </div>
           <div class="transaction-section">
             <h2>Transactions</h2>
             <div class="transaction-form">
               <label for="withdraw-amount">Withdraw Amount:</label>
-              <div class="d-flex">
+              <div class="d-flex gap-3">
                 <input
                   type="number"
                   class="form-control"
                   id="withdraw-amount"
+                  placeholder="$"
                 />
                 <button
-                  class="btn btn-primary"
+                  class="btn btn-primary rounded-1"
                   onclick="Transaction.withdraw()"
                 >
                   Withdraw
@@ -86,11 +116,21 @@
             </div>
             <div class="transaction-form">
               <label for="transfer-amount">Transfer Amount:</label>
-              <input type="number" class="form-control" id="transfer-amount" />
+              <input
+                type="number"
+                class="form-control"
+                id="transfer-amount"
+                placeholder="$"
+              />
               <label for="transfer-to">Transfer To:</label>
-              <div class="d-flex">
+              <div class="d-flex gap-3">
                 <input type="text" class="form-control" id="transfer-to" />
-                <button class="btn btn-primary" onclick="Transaction.transfer()">Transfer</button>
+                <button
+                  class="btn btn-primary rounded-1"
+                  onclick="Transaction.transfer()"
+                >
+                  Transfer
+                </button>
               </div>
             </div>
           </div>
@@ -98,37 +138,70 @@
       </main>
     </div>
 
+    <div id="modal"></div>
+
     <script>
-    class Transaction {
-      static withdraw() {
-        const withdrawAmount = parseFloat(document.getElementById("withdraw-amount").value);
-        if (!isNaN(withdrawAmount) && withdrawAmount > 0) {
-          Transaction.updateBalance(-withdrawAmount);
-          alert("Withdrawal successful!");
-        } else {
-          alert("Please enter a valid amount.");
+      const balance = document.getElementById("balance");
+      let notification = 0;
+
+
+      class Transaction {
+        static withdraw() {
+          const withdrawAmount = parseFloat(
+            document.getElementById("withdraw-amount").value
+          );
+
+          if (parseInt(balance.innerText) === 0) {
+            // Transaction.showMessage("You do not have any balance left");
+            Transaction.zeroBalance()
+            Transaction.updateBalance(0);
+          } else if (!isNaN(withdrawAmount) && withdrawAmount > 0) {
+            Transaction.updateBalance(-withdrawAmount);
+            // alert("Withdrawal successful!");
+          } else {
+          /*if(balanceElement.innerHTML === 0) {
+           Transaction.showMessage('')
+         }
+         else if(balance.innerText === 0) {
+           Transaction.showMessage("You do not have any balance!")
+         } */
+            Transaction.showMessage("Please enter a valid amount.");
+          }
+        }
+
+        static transfer() {
+          const transferAmount = parseFloat(
+            document.getElementById("transfer-amount").value
+          );
+          const transferTo = document.getElementById("transfer-to").value;
+          if (parseInt(balance.innerText === 0)) {
+            Transaction.zeroBalance()
+          } else if (!isNaN(transferAmount) && transferAmount > 0) {
+            Transaction.updateBalance(-transferAmount);
+            Transaction.showMessage(
+              `Successfully transferred $${transferAmount} to ${transferTo}!`
+            );
+          } else {
+            Transaction.showMessage("Please enter amount and recipient");
+          }
+        }
+
+        static updateBalance(amount) {
+          const balanceElement = document.getElementById("balance");
+          let currentBalance = parseFloat(balanceElement.innerText);
+          currentBalance += amount;
+          balanceElement.innerText = currentBalance;
+        }
+
+        static showMessage(msg) {
+          alert(msg);
+        }
+
+        static zeroBalance(){
+          alert('You do not have any balance left')
         }
       }
-
-      static transfer() {
-        const transferAmount = parseFloat(document.getElementById("transfer-amount").value);
-        const transferTo = document.getElementById("transfer-to").value;
-        if (!isNaN(transferAmount) && transferAmount > 0) {
-          Transaction.updateBalance(-transferAmount);
-          alert(`Successfully transferred $${transferAmount.toFixed(2)} to ${transferTo}!`);
-        } else {
-          alert("Please enter a valid amount and recipient.");
-        }
-      }
-
-      static updateBalance(amount) {
-        const balanceElement = document.getElementById("balance");
-        let currentBalance = parseFloat(balanceElement.innerText);
-        currentBalance += amount;
-        balanceElement.innerText = currentBalance.toFixed(2);
-      }
-    } 
-  
-  </script>
+    </script>
+    <script src="./bootstrap.bundle"></script>
   </body>
 </html>

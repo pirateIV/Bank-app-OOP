@@ -53,6 +53,8 @@ aside {
   top: 0;
   overflow: hidden;
   transition: 0.3s ease;
+  height: 100%;
+  z-index: 4;
   width: 0;
 }
 .notify small {
@@ -152,7 +154,7 @@ main section .cards *:last-child {
 }
 .balance {
   background-color: white;
-  padding: 20px;
+  padding: 10px;
   width: 70%;
   margin: 0 auto;
   /* position: absolute; */
@@ -160,6 +162,11 @@ main section .cards *:last-child {
   transform: translate(-50%, -50%);
   border-radius: 10px;
   left: 50%;
-  box-shadow: 3px 3px 1px 1px #111;
+  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.4);
   top: 50%;
+}
+.transaction-section {
+  /* height: 0; */
+  /* overflow: hidden;
+  transform: translateY(300px); */
 }
